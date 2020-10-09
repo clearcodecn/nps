@@ -12,7 +12,7 @@ RUN cd /tmp && \
 # 8080为web管理访问端口
 # 8024为网桥端口，用于客户端与服务器通信
 
-COPY ./linux_amd64_server.tar.gz /tmp/linux_amd64_server.tar.gz
+# COPY ./linux_amd64_server.tar.gz /tmp/linux_amd64_server.tar.gz
 RUN cd /tmp && \
     tar -zxf linux_amd64_server.tar.gz && \
     ./nps install
