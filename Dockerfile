@@ -3,10 +3,10 @@ FROM alpine
 ### RUN #sed -i s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g /etc/apk/repositories && \
 
 RUN apk update && \
-    apk add wget
+    apk add --no-cache wget
 
 RUN cd /tmp && \
-    wget https://github.com/ehang-io/nps/releases/download/v0.26.9/linux_amd64_server.tar.gz && \
+    wget https://github.com/ehang-io/nps/releases/download/v0.26.9/linux_amd64_server.tar.gz 
 
 # 80与443端口为域名解析模式默认端口
 # 8080为web管理访问端口
@@ -15,7 +15,8 @@ RUN cd /tmp && \
 # COPY ./linux_amd64_server.tar.gz /tmp/linux_amd64_server.tar.gz
 RUN cd /tmp && \
     tar -zxf linux_amd64_server.tar.gz && \
-    ./nps install
+    ./nps install && \
+    rm -rf /tmp/linux_amd64_server.tar.gz
     
 EXPOSE 8080
 EXPOSE 80
